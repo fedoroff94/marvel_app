@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { increaseCount, decreaseCount } from "./redux/actions/actionCreator";
+import { useSelector, useDispatch } from 'react-redux'
+import { increaseCount, decreaseCount } from "./redux/actions/actionCreator"
 
 const App = () => {
 

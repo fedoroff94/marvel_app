@@ -1,4 +1,4 @@
-import { INCREASE_COUNT, DECREASE_COUNT } from "../constants";
+import { INCREASE_COUNT, DECREASE_COUNT } from "../constants"
 
 interface IAction {
     type: string;
