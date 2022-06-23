@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
-import counter from './counter'
+import { combineReducers } from "redux"
+import planets from './planets'
 
 const reducer = combineReducers({
-    counter,
+    planets,
 });
 
 export default reducer;

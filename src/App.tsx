@@ -1,27 +1,30 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { increaseCount, decreaseCount } from "./redux/actions/actionCreator"
+import React, { Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllPlanets } from "./actions/planets";
+import {
+  StyledContainer,
+  StyledButton,
+} from "./styled-components/styledComponents";
+import GlobalStyle from "./styled-components/GlobalStyle";
 
 const App = () => {
-
   const dispatch = useDispatch();
 
-  const count = useSelector((store: any) => store?.counter?.count);
-
-   const handleIncrease = () => {
-    dispatch(increaseCount());
+  const fetchAllPlanets = () => {
+    dispatch(getAllPlanets());
   };
 
-   const handleDecrease = () => {
-    dispatch(decreaseCount());
-  };
+  const planets = useSelector((store: any) => store?.planets);
+  console.log(planets)
 
-return (
-  <div>
-    <h1>{count} </h1>
-    <button onClick={handleIncrease}>increase</button>
-    <button onClick={handleDecrease}>decrease</button>
-  </div>
-)
+  return (
+    <Fragment>
+      <GlobalStyle />
+        <StyledContainer>
+          <StyledButton variant="contained" onClick={() => {fetchAllPlanets()}}>Start wars</StyledButton>
+        </StyledContainer>
+    </Fragment>
+  );
 };
 
 export default App;
