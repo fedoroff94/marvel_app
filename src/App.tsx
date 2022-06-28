@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllPlanets } from "./actions/planets";
+import { getAllPeople } from "./actions/people";
 import {
   StyledContainer,
   StyledButton,
@@ -10,18 +11,21 @@ import GlobalStyle from "./styled-components/GlobalStyle";
 const App = () => {
   const dispatch = useDispatch();
 
-  const fetchAllPlanets = () => {
+  const fetchData = () => {
     dispatch(getAllPlanets());
+    dispatch(getAllPeople());
   };
 
   const planets = useSelector((store: any) => store?.planets);
-  console.log(planets)
+  const people = useSelector((store: any) => store?.people);
+  console.log(planets);
+  console.log(people);
 
   return (
     <Fragment>
       <GlobalStyle />
         <StyledContainer>
-          <StyledButton variant="contained" onClick={() => {fetchAllPlanets()}}>Start wars</StyledButton>
+          <StyledButton variant="contained" onClick={() => {fetchData()}}>Get data</StyledButton>
         </StyledContainer>
     </Fragment>
   );

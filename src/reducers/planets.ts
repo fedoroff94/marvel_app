@@ -2,9 +2,9 @@ import {
   GET_ALL_PLANETS_REQUESTED,
   GET_ALL_PLANETS_SUCCEEDED,
   GET_ALL_PLANETS_FAILED,
-} from "../../actions/planets";
-import { IAction } from "../../utils/actionCreator";
-import { IPlanet } from "../../types/planets";
+} from "../actions/planets";
+import { IAction } from "../utils/actionCreator";
+import { IPlanet } from "../types/planets";
 
 const InitialState = {
   loading: false,
