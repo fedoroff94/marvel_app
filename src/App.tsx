@@ -5,6 +5,8 @@ import { getAllPeople } from "./actions/people";
 import {
   StyledContainer,
   StyledButton,
+  StyledDataContainer,
+  StyledPlanetsContainer,
 } from "./styled-components/styledComponents";
 import GlobalStyle from "./styled-components/GlobalStyle";
 
@@ -18,14 +20,19 @@ const App = () => {
 
   const planets = useSelector((store: any) => store?.planets);
   const people = useSelector((store: any) => store?.people);
-  console.log(planets);
-  console.log(people);
 
   return (
     <Fragment>
       <GlobalStyle />
         <StyledContainer>
           <StyledButton variant="contained" onClick={() => {fetchData()}}>Get data</StyledButton>
+          <StyledDataContainer>
+            <StyledPlanetsContainer>
+              {/* {planets.length !== 0 && planets.map(({ }) => {
+
+              })} */}
+            </StyledPlanetsContainer>
+          </StyledDataContainer>
         </StyledContainer>
     </Fragment>
   );
