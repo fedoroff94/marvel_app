@@ -4,9 +4,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: teal;
-    font-family: Open-Sans, Helvetica, Sans-Serif;
-    background: url('images/background.webp') no-repeat center;
+    background: transparent;
+    font-family: Helvetica, Sans-Serif;
     width: 100vw;
     height: 100vh;
   }
