@@ -8,13 +8,13 @@ import { IPlanet } from "../types/planets";
 
 const InitialState = {
   loading: false,
-  planets: [],
+  data: [],
   error: false,
 };
 
 interface IState {
   loading: boolean;
-  planets: Array<IPlanet>;
+  data: Array<IPlanet>;
   error: boolean;
 }
 
@@ -23,7 +23,7 @@ const planets = (state: IState = InitialState, action: IAction<any>) => {
     case GET_ALL_PLANETS_REQUESTED:
       return { ...state, loading: true, error: false };
     case GET_ALL_PLANETS_SUCCEEDED:
-      return { ...state, loading: false, planets: action.payload, error: false };
+      return { ...state, loading: false, data: action.payload, error: false };
     case GET_ALL_PLANETS_FAILED:
       return { ...state, loading: false,  error: true};
     default:
