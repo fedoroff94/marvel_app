@@ -31,7 +31,6 @@ const App:React.FC = () => {
   }, [dispatch])
 
   const planetsData = useSelector((store: any) => store?.planets.data);
-  console.log(planetsData);
   const peopleData = useSelector((store: any) => store?.people);
 
   return (
