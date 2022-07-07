@@ -18,12 +18,14 @@ z-index: 2;
 export const StyledSelectHeader = styled.div`
 border: 2px solid rgba(248, 255, 117, 0.4);
 border-radius: 10px;
-width: 80vh;
+max-width: 80vh;
+min-width: 30vw;
 height: 50px;
 display: flex;
 align-items: center;
 background-color: rgba(253, 255, 145, 0.4);
 transition: all 0.5s;
+margin: 10px;
 &:hover {
   border: 2px solid rgba(248, 255, 117, 0.8);
 }
@@ -73,15 +75,15 @@ transform: ${(props) => props.isOpen ? "rotate(180deg)" : "rotate(0deg)"};
 }
 `;
 
-
 export const StyledSelectDataList = styled.div`
 display: flex;
 flex-direction: column;
 transition: all 0.5s;
-margin-top: 10px;
+margin: 10px;
 border: 2px solid rgba(248, 255, 117, 0.4);
 border-radius: 10px;
-width: 80vh;
+max-width: 80vw;
+min-width: 30vw;
 height: auto;
 align-items: center;
 justify-content: space-around;

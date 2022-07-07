@@ -1,4 +1,4 @@
-import { take, takeEvery, takeLatest, takeLeading, select, call, put } from "@redux-saga/core/effects"
+import { takeEvery, call, put } from "@redux-saga/core/effects"
 import { GET_ALL_PEOPLE_REQUESTED, getAllPeopleSucceeded, getAllPeopleFailed } from "../../actions/people"
 import { api } from '../../api';
 import { IGetAllPeopleResponse } from "../../api/people/getAll";

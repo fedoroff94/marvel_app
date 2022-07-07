@@ -10,6 +10,5 @@ export interface IGetAllPlanetsResponse {
 
 export const getAll = async () => {
   const response = await apiService.get<IGetAllPlanetsResponse>(`planets`);
-  console.log(response);
   return response.data;
 }
