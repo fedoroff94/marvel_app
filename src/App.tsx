@@ -12,26 +12,17 @@ import { Select, ISelectItem } from './components/Select';
 const getFormatedPlanets = (data: IPlanet[]) => data?.map(({ name }) => ({value: name, label: name}));
 
 const App:React.FC = () => {
-  const [showItems, setShowItems] = useState(false);
-  const [inputData, setInputData] = useState('');
+  const planetsData = useSelector((store: any) => store?.planets.data);
+  const peopleData = useSelector((store: any) => store?.people);
+  
   const [selectedPlanet, setSelectedPlanet] = useState<ISelectItem | null>(null);
   const dispatch = useDispatch();
-
-  const toogleListItemsShow = () => {
-    setShowItems(!showItems);
-  }
-
-  const resetInputData = () => {
-    setInputData('');
-  }
 
   useEffect(() => {
     dispatch(getAllPlanets());
     dispatch(getAllPeople());
   }, [dispatch])
 
-  const planetsData = useSelector((store: any) => store?.planets.data);
-  const peopleData = useSelector((store: any) => store?.people);
 
   return (
     <Fragment>
