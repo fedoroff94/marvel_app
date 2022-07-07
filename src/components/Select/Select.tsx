@@ -1,5 +1,6 @@
 import { ContentPasteSearchOutlined } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 import {
   StyledSelectContainer,
   StyledSelectHeader,
@@ -20,40 +21,48 @@ interface ISelect {
   items: ISelectItem[];
   value?: ISelectItem | null;
   disabled?: boolean;
-  onChange: (value: ISelectItem) => void;
+  onChange: (value: ISelectItem | null) => void;
 }
 
 export const Select = ({ value, items, onChange }: ISelect) => {
   const [isOpen, setIsOpen] = useState(false);
   const [filteredList, setFilteredList] = useState(items);
+  const [searchValue, setSearchValue] = useState('');
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useClickOutside(ref, () => { setIsOpen(false) });
+
+  useEffect(() => {
+    setFilteredList(items)
+  }, [items])
 
   const filterHandler = (e: any) => {
-    let toLowerCaseItems = items.map((item) => ({
-      value: item.value.toLocaleLowerCase(),
-      label: item.label.toLocaleLowerCase(),
-    }));
-    let filteredItems = toLowerCaseItems.filter(({ value }) =>
-      value.includes(e.currentTarget.value.toLowerCase())
+    let filteredItems = items.filter(({ value }) =>
+      value.toLocaleLowerCase().includes(e.target.value.toLowerCase())
     );
+    setSearchValue(e.target.value);
     setFilteredList(filteredItems);
-    onChange({
-      value: e.currentTarget.value,
-      label: e.currentTarget.value,
-    });
   };
-  
+ 
+  console.log('value?.label', value?.label);
+
   return (
-    <StyledSelectContainer>
+    <StyledSelectContainer ref={ref}>
       <StyledSelectHeader>
         <StyledInput
-          value={value?.label}
+          value={isOpen ? searchValue : (value?.label || '')}
           placeholder="Choose your planet"
           onChange={(e) => filterHandler(e)}
+          onFocus={() => setIsOpen(true)}
         />
         <StyledButtonsContainer>
           <StyledCross
             fontSize="medium"
-            onClick={() => onChange({ value: "", label: "" })}
+            onClick={() => {
+              setIsOpen(false);
+              setSearchValue('');
+              onChange(null);
+            }}
           />
           <div style={{ color: "#fbff00", fontSize: "25px" }}>|</div>
           <StyledArrow
@@ -66,7 +75,14 @@ export const Select = ({ value, items, onChange }: ISelect) => {
       {isOpen && (
         <StyledSelectDataList>
           {filteredList.map((item) => (
-            <StyledDataListItem key={item.value} onClick={() => onChange(item)}>
+            <StyledDataListItem 
+              key={item.value} 
+              onClick={() => {
+                onChange(item);
+                setIsOpen(false);
+                setSearchValue('');
+              }}
+            >
               {item.label}
             </StyledDataListItem>
           ))}
